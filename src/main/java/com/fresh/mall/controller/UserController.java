@@ -18,4 +18,8 @@ public class UserController {
         return userService.getUser();
 
     }
+
+    public void register(){
+
+    }
 }
