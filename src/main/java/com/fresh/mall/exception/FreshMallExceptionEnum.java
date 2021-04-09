@@ -1,7 +1,14 @@
 package com.fresh.mall.exception;
 
 public enum FreshMallExceptionEnum {
-    NEED_USER_NAME(10001,"Username Null");
+    NEED_USER_NAME(10001,"Username Null"),
+    NEED_PASSWORD(10002,"Password Null"),
+    PASSWORD_TOO_SHORT(10003,"Short Password"),
+    NAME_EXISTED(10004, "Username already existed"),
+    INSERT_FAILED(10005, "Insert failed, try later"),
+    SYSTEM_ERROR(20000, "System Error");
+
+
     Integer code;
 
     String msg;
