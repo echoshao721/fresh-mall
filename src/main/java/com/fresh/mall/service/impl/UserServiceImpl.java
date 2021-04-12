@@ -5,8 +5,11 @@ import com.fresh.mall.exception.FreshMallExceptionEnum;
 import com.fresh.mall.model.dao.UserMapper;
 import com.fresh.mall.model.pojo.User;
 import com.fresh.mall.service.UserService;
+import com.fresh.mall.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.security.NoSuchAlgorithmException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,7 +32,11 @@ public class UserServiceImpl implements UserService {
         //write in database
         User user = new User();
         user.setUsername(userName);
-        user.setPassword(password);
+        try {
+            user.setPassword(MD5Utils.getMD5Str(password));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         int count = userMapper.insertSelective(user);//only username password so insertSelective
         if(count == 0){
             throw new FreshMallException(FreshMallExceptionEnum.INSERT_FAILED);
