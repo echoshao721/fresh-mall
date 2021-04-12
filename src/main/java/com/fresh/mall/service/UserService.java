@@ -9,4 +9,5 @@ public interface UserService {
     void register(String userName, String password) throws FreshMallException;
 
 
+    User login(String userName, String password) throws FreshMallException;
 }
