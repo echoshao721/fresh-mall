@@ -10,4 +10,8 @@ public interface UserService {
 
 
     User login(String userName, String password) throws FreshMallException;
+
+    void updateInformation(User user) throws FreshMallException;
+
+    boolean checkAdminRole(User user);
 }

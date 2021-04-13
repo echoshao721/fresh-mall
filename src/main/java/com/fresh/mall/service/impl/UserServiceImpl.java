@@ -56,4 +56,16 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+    @Override
+    public void updateInformation(User user) throws FreshMallException {
+        //update signature
+        int updateCount = userMapper.updateByPrimaryKeySelective(user);
+        if(updateCount > 1){
+            throw new FreshMallException(FreshMallExceptionEnum.UPDATE_FAILED);
+        }
+    }
+    @Override
+    public boolean checkAdminRole(User user){
+        return user.getRole().equals(2);
+    }
 }
