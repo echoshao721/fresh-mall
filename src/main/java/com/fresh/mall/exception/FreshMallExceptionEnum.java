@@ -4,12 +4,14 @@ public enum FreshMallExceptionEnum {
     NEED_USER_NAME(10001,"Username Null"),
     NEED_PASSWORD(10002,"Password Null"),
     PASSWORD_TOO_SHORT(10003,"Short Password"),
-    NAME_EXISTED(10004, "Username already existed"),
+    NAME_EXISTED(10004, "Duplicate Name not allowed"),
     INSERT_FAILED(10005, "Insert failed, try later"),
     WRONG_PASSWORD(10006,"Wrong Password"),
     NEED_LOGIN(10007,"need login"),
     UPDATE_FAILED(10008,"update failed"),
     NOT_ADMIN(10009,"Not Admin"),
+    PARA_NOT_NULL(10010,"Parameter cannot be null"),
+    CREATE_FAILED(10011,"create failed"),
     SYSTEM_ERROR(20000, "System Error");
 
 

@@ -1,6 +1,6 @@
 package com.fresh.mall.exception;
 
-public class FreshMallException extends Exception {
+public class FreshMallException extends RuntimeException {
     private final Integer code;
     private final String message;
 
