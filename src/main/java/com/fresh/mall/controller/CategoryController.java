@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class CategoryController {
@@ -25,11 +26,8 @@ public class CategoryController {
 
     @PostMapping("admin/category/add")
     @ResponseBody
-    public ApiRestResponse addCategory(HttpSession session, @RequestBody AddCategoryReq addCategoryReq){
-        if(addCategoryReq.getName()==null||addCategoryReq.getOrderNum()==null||addCategoryReq.getType()==null
-        ||addCategoryReq.getSuperId()==null){
-            return ApiRestResponse.error(FreshMallExceptionEnum.PARA_NOT_NULL);
-        }
+    public ApiRestResponse addCategory(HttpSession session, @Valid @RequestBody AddCategoryReq addCategoryReq){
+
         User currentUser = (User)session.getAttribute(Constant.FRESH_MALL_USER);
         if(currentUser == null){
             return ApiRestResponse.error(FreshMallExceptionEnum.NEED_LOGIN);

@@ -12,6 +12,7 @@ public enum FreshMallExceptionEnum {
     NOT_ADMIN(10009,"Not Admin"),
     PARA_NOT_NULL(10010,"Parameter cannot be null"),
     CREATE_FAILED(10011,"create failed"),
+    REQUST_PARA_ERROR(10012,"Request parameter error"),
     SYSTEM_ERROR(20000, "System Error");
 
 
