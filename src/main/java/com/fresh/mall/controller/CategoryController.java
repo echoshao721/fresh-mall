@@ -7,6 +7,7 @@ import com.fresh.mall.model.pojo.User;
 import com.fresh.mall.model.request.AddCategoryReq;
 import com.fresh.mall.service.CategoryService;
 import com.fresh.mall.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class CategoryController {
     UserService userService;
     @Autowired
     CategoryService categoryService;
-
+    @ApiOperation("back end add product category")
     @PostMapping("admin/category/add")
     @ResponseBody
     public ApiRestResponse addCategory(HttpSession session, @Valid @RequestBody AddCategoryReq addCategoryReq){
