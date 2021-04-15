@@ -13,6 +13,7 @@ public enum FreshMallExceptionEnum {
     PARA_NOT_NULL(10010,"Parameter cannot be null"),
     CREATE_FAILED(10011,"create failed"),
     REQUST_PARA_ERROR(10012,"Request parameter error"),
+    DELETE_FAILED(10013,"delete failed"),
     SYSTEM_ERROR(20000, "System Error");
 
 
