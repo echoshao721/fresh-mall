@@ -125,4 +125,10 @@
     select <include refid="Base_Column_List"/>
     from fresh_mall_category
   </select>
+
+  <select id="selectCategoriesBySuperId" parameterType="int" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from fresh_mall_category
+    where super_id = #{superId}
+  </select>
 </mapper>

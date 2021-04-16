@@ -7,6 +7,7 @@ import com.fresh.mall.model.pojo.Category;
 import com.fresh.mall.model.pojo.User;
 import com.fresh.mall.model.request.AddCategoryReq;
 import com.fresh.mall.model.request.UpdateCategoryReq;
+import com.fresh.mall.model.vo.CategoryVO;
 import com.fresh.mall.service.CategoryService;
 import com.fresh.mall.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +25,7 @@ import springfox.documentation.service.ApiInfo;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -86,5 +88,13 @@ public class CategoryController {
                                                 @RequestParam Integer pageSize){
         PageInfo pageInfo = categoryService.listForAdmin(pageNum, pageSize);
         return ApiRestResponse.success(pageInfo);
+    }
+
+    @ApiOperation("Frontend Category list")
+    @PostMapping("category/list")
+    @ResponseBody
+    public ApiRestResponse listCategoryForCustomer(){
+        List<CategoryVO> categoryVOList = categoryService.listCategoryForCustomer();
+        return ApiRestResponse.success(categoryVOList);
     }
 }
