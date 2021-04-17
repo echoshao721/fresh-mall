@@ -14,6 +14,8 @@ public enum FreshMallExceptionEnum {
     CREATE_FAILED(10011,"create failed"),
     REQUST_PARA_ERROR(10012,"Request parameter error"),
     DELETE_FAILED(10013,"delete failed"),
+    MKDIR_FAILED(10014,"Folder Create Failed"),
+    UPLOAD_FAILED(10015,"Image Upload Failed"),
     SYSTEM_ERROR(20000, "System Error");
 
 
