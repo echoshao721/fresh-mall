@@ -28,5 +28,32 @@ public class ProductServiceImpl implements ProductService {
         }
 
     }
+    @Override
+    public void update(Product updateProduct){
+        Product productOld = productMapper.selectByName(updateProduct.getName());
+        //same name but different id, stop update
+        if(productOld != null && !productOld.getId().equals(updateProduct.getId())){
+            throw new FreshMallException(FreshMallExceptionEnum.NAME_EXISTED);
+        }
+        int count = productMapper.updateByPrimaryKeySelective(updateProduct);
+        if(count == 0){
+            throw new FreshMallException(FreshMallExceptionEnum.UPDATE_FAILED);
+        }
+    }
+
+    @Override
+    public void delete(Integer id){
+        Product productOld = productMapper.selectByPrimaryKey(id);
+        //same name but different id, stop update
+        if(productOld == null ){
+            throw new FreshMallException(FreshMallExceptionEnum.DELETE_FAILED);
+        }
+        int count = productMapper.deleteByPrimaryKey(id);
+        if(count == 0){
+            throw new FreshMallException(FreshMallExceptionEnum.DELETE_FAILED);
+        }
+    }
+
+
 
 }

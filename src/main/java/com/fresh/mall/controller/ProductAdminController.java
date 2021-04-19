@@ -4,8 +4,14 @@ import com.fresh.mall.common.ApiRestResponse;
 import com.fresh.mall.common.Constant;
 import com.fresh.mall.exception.FreshMallException;
 import com.fresh.mall.exception.FreshMallExceptionEnum;
+import com.fresh.mall.model.pojo.Product;
 import com.fresh.mall.model.request.AddProductReq;
+import com.fresh.mall.model.request.UpdateCategoryReq;
 import com.fresh.mall.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -76,6 +82,24 @@ public class ProductAdminController {
             effectiveURI = null;
         }
         return effectiveURI;
+    }
+    @ApiOperation("backend update product")
+    @PostMapping("/admin/product/update")
+    public ApiRestResponse updateProduct(@Valid @RequestBody UpdateCategoryReq updateCategoryReq){
+        Product product = new Product();
+        BeanUtils.copyProperties(updateCategoryReq,product);
+        productService.update(product);
+        return ApiRestResponse.success();
+
+    }
+
+    @ApiOperation("backend delete product")
+    @PostMapping("/admin/product/delete")
+    public ApiRestResponse deleteProduct(@RequestParam Integer id){
+
+        productService.delete(id);
+        return ApiRestResponse.success();
+
     }
 
 }
