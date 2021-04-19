@@ -102,4 +102,12 @@ public class ProductAdminController {
 
     }
 
+    @ApiOperation("backend batch update product")
+    @PostMapping("/admin/product/batchUpdateSellStatus")
+    public ApiRestResponse batchUpdateSellStatus(@RequestParam Integer[] ids, @RequestParam Integer sellStatus){
+        productService.batchUpdateSellStatus(ids,sellStatus);
+        return ApiRestResponse.success();
+
+    }
+
 }
