@@ -8,6 +8,7 @@ import com.fresh.mall.model.pojo.Product;
 import com.fresh.mall.model.request.AddProductReq;
 import com.fresh.mall.model.request.UpdateCategoryReq;
 import com.fresh.mall.service.ProductService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -109,5 +110,13 @@ public class ProductAdminController {
         return ApiRestResponse.success();
 
     }
+
+    @ApiOperation("backend product list")
+    @PostMapping("/admin/product/list")
+    public ApiRestResponse list(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+        PageInfo pageInfo = productService.listForAdmin(pageNum, pageSize);
+        return ApiRestResponse.success(pageInfo);
+    }
+
 
 }
