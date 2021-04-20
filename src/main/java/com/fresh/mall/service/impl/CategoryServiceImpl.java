@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +72,9 @@ public class CategoryServiceImpl implements CategoryService {
         return pageInfo;
     }
     @Override
-    public List<CategoryVO> listCategoryForCustomer(){
+    public List<CategoryVO> listCategoryForCustomer(Integer superId){
         ArrayList<CategoryVO> categoryVOList = new ArrayList<>();
-        recursivelyFindCategories(categoryVOList,0);
+        recursivelyFindCategories(categoryVOList,superId);
         return categoryVOList;
     }
 

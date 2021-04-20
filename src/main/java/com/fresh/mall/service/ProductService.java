@@ -4,6 +4,7 @@ import com.fresh.mall.model.pojo.Category;
 import com.fresh.mall.model.pojo.Product;
 import com.fresh.mall.model.request.AddCategoryReq;
 import com.fresh.mall.model.request.AddProductReq;
+import com.fresh.mall.model.request.ProductListReq;
 import com.fresh.mall.model.vo.CategoryVO;
 import com.github.pagehelper.PageInfo;
 
@@ -22,4 +23,6 @@ public interface ProductService {
     PageInfo listForAdmin(Integer pageNum, Integer pageSize);
 
     Product detail(Integer id);
+
+    PageInfo list(ProductListReq productListReq);
 }
