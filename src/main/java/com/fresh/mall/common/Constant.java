@@ -22,4 +22,16 @@ public class Constant {
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price desc","price asc");
 
     }
+
+    public interface SaleStatus{
+        int NOT_SALE = 0;//product not for sale
+        int SALE = 1;
+
+    }
+
+    public interface Cart{
+        int UN_CHECKED = 0;
+        int CHECKED = 1;//cart selected
+
+    }
 }

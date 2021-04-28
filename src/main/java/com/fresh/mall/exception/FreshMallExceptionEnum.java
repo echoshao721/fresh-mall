@@ -16,6 +16,7 @@ public enum FreshMallExceptionEnum {
     DELETE_FAILED(10013,"delete failed"),
     MKDIR_FAILED(10014,"Folder Create Failed"),
     UPLOAD_FAILED(10015,"Image Upload Failed"),
+    NOT_SALE(10016,"Product not for sale"),
     SYSTEM_ERROR(20000, "System Error");
 
 
