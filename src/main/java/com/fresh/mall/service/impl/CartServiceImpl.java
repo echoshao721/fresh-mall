@@ -65,4 +65,38 @@ public class CartServiceImpl implements CartService {
             throw new FreshMallException(FreshMallExceptionEnum.NOT_SALE);
         }
     }
+
+    @Override
+    public List<CartVO> update(Integer userId, Integer productId, Integer count){
+        validProduct(productId,count);
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId,productId);
+        if(cart == null){
+            //product not in cart, error
+            throw new FreshMallException(FreshMallExceptionEnum.UPDATE_FAILED);
+        }else{
+            //this product already in this cart, update qty
+            Cart cartNew = new Cart();
+            cartNew.setQuantity(count);
+            cartNew.setId(cart.getId());
+            cartNew.setProductId(cart.getProductId());
+            cartNew.setUserId(cart.getUserId());
+            cartNew.setSelected(Constant.Cart.CHECKED);
+            cartMapper.updateByPrimaryKeySelective(cartNew);
+        }
+        return this.list(userId);
+
+    }
+
+    @Override
+    public List<CartVO> delete(Integer userId, Integer productId){
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId,productId);
+        if(cart == null){
+            //product not in cart, error
+            throw new FreshMallException(FreshMallExceptionEnum.DELETE_FAILED);
+        }else{
+            cartMapper.deleteByPrimaryKey(cart.getId());
+        }
+        return this.list(userId);
+
+    }
 }
