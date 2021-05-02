@@ -99,4 +99,21 @@ public class CartServiceImpl implements CartService {
         return this.list(userId);
 
     }
+    @Override
+    public List<CartVO> selectOrNot(Integer userId, Integer productId,
+                                    Integer selected){
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId,productId);
+        if(cart == null){
+            //product not in cart, cannot select
+            throw new FreshMallException(FreshMallExceptionEnum.UPDATE_FAILED);
+        }else{
+            cartMapper.selectOrNot(userId,productId,selected);
+        }
+        return this.list(userId);
+    }
+    @Override
+    public List<CartVO> selectAllOrNot(Integer userId, Integer selected){
+        cartMapper.selectOrNot(userId,null,selected);
+        return this.list(userId);
+    }
 }

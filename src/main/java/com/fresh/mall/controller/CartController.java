@@ -34,7 +34,7 @@ public class CartController {
         return ApiRestResponse.success(cartVOList);
     }
 
-    @ApiOperation("add product to cart")
+    @ApiOperation("update cart")
     @PostMapping("/update")
     public ApiRestResponse update(@RequestParam Integer productId, @RequestParam Integer count){
 
@@ -42,11 +42,32 @@ public class CartController {
         return ApiRestResponse.success(cartVOList);
     }
 
-    @ApiOperation("add product to cart")
-    @PostMapping("/update")
+    @ApiOperation("delete cart")
+    @PostMapping("/delete")
     public ApiRestResponse delete(@RequestParam Integer productId){
 
         List<CartVO> cartVOList = cartService.delete(UserFilter.currentUser.getId(),productId);
         return ApiRestResponse.success(cartVOList);
     }
+
+    @ApiOperation("select / unselect product in cart")
+    @PostMapping("/select")
+    public ApiRestResponse select(@RequestParam Integer productId,
+                                  @RequestParam Integer selected){
+
+        List<CartVO> cartVOList = cartService.selectOrNot(UserFilter.currentUser.getId(),
+                productId, selected);
+        return ApiRestResponse.success(cartVOList);
+    }
+
+    @ApiOperation("select / unselect product in cart")
+    @PostMapping("/selectAll")
+    public ApiRestResponse selectAll(@RequestParam Integer selected){
+
+        List<CartVO> cartVOList = cartService.selectAllOrNot(UserFilter.currentUser.getId(),
+                selected);
+        return ApiRestResponse.success(cartVOList);
+    }
+
+
 }
