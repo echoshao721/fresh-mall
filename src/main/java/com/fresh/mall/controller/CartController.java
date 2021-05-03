@@ -60,7 +60,7 @@ public class CartController {
         return ApiRestResponse.success(cartVOList);
     }
 
-    @ApiOperation("select / unselect product in cart")
+    @ApiOperation("select / unselect all products in cart")
     @PostMapping("/selectAll")
     public ApiRestResponse selectAll(@RequestParam Integer selected){
 

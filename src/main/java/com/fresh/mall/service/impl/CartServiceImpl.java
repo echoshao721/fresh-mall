@@ -64,6 +64,9 @@ public class CartServiceImpl implements CartService {
         if(product == null || product.getStatus().equals(Constant.SaleStatus.NOT_SALE)){
             throw new FreshMallException(FreshMallExceptionEnum.NOT_SALE);
         }
+        if(count > product.getStock()){
+            throw new FreshMallException(FreshMallExceptionEnum.NOT_ENOUGH);
+        }
     }
 
     @Override

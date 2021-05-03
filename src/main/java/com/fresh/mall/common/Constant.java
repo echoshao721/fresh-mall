@@ -1,5 +1,7 @@
 package com.fresh.mall.common;
 
+import com.fresh.mall.exception.FreshMallException;
+import com.fresh.mall.exception.FreshMallExceptionEnum;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -33,5 +35,45 @@ public class Constant {
         int UN_CHECKED = 0;
         int CHECKED = 1;//cart selected
 
+    }
+
+    public enum OrderStatusEnum{
+        CANCELLED(0,"user already cancelled"),
+        NOT_PAID(10,"NOT PAID"),
+        PAID(20,"PAID"),
+        SHIPPED(30,"shipped"),
+        COMPLETED(40,"completed");
+        private String value;
+        private int code;
+
+        OrderStatusEnum(int code, String value) {
+            this.value = value;
+            this.code = code;
+        }
+
+        public static OrderStatusEnum codeOf(int code){
+            for(OrderStatusEnum orderStatusEnum : values()){
+                if(orderStatusEnum.getCode() == code){
+                    return orderStatusEnum;
+                }
+            }
+            throw new FreshMallException(FreshMallExceptionEnum.NO_ENUM);
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
     }
 }

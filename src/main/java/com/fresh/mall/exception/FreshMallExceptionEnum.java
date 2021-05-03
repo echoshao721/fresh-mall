@@ -17,6 +17,9 @@ public enum FreshMallExceptionEnum {
     MKDIR_FAILED(10014,"Folder Create Failed"),
     UPLOAD_FAILED(10015,"Image Upload Failed"),
     NOT_SALE(10016,"Product not for sale"),
+    NOT_ENOUGH(10017,"stock not enough"),
+    CART_EMPTY(10018,"no selected product in this cart"),
+    NO_ENUM(10019,"cannot find enum"),
     SYSTEM_ERROR(20000, "System Error");
 
 
